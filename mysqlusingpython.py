@@ -1,8 +1,5 @@
 from mysql.connector import (connection)
-cnx = connection.MySQLConnection(user='root',
-			      password='20019',
-			      host='127.0.0.1',
-                                database='portmanagementdb')
+cnx = connection.MySQLConnection(user='root', password='20019', host='127.0.0.1', database='portmanagementdb')
 cursor = cnx.cursor()
 def getInFreight(cursor):
     query = ("SELECT listID, freightID FROM list "
@@ -17,7 +14,6 @@ def insertInList(cursor, instance):
                        "VALUES (%(listID)s, %(freightID)s, %(freightTypeID)s,"
                        "%(targetID)s, %(freightDirection)s, %(origin)s);"
                        )
-    print(query)
     cursor.execute(addFreightQuery, instance)
 def deleteFreight(cursor, freightID):
     dropFreight = (f"DELETE FROM list WHERE freightID='{freightID}';")
@@ -30,7 +26,7 @@ instance = {
     'freightDirection':True,
     'origin':"Lunarian"
     }
-insertInList(cursor, instance)
-#deleteFreight(cursor, "CMSU7773080")
-cnx.commit()
+#insertInList(cursor, instance)
+deleteFreight(cursor, "CMSU7773080")
+#cnx.commit()
 cnx.close()
