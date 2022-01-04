@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd9abd66-27af-4bb4-81ea-f0cdb4a9a3b1" name="Changes" comment="">
+    <list default="true" id="fd9abd66-27af-4bb4-81ea-f0cdb4a9a3b1" name="Changes" comment="Implement insertin freight">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysqlusingpython.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysqlusingpython.py" afterDir="false" />
     </list>
@@ -64,6 +64,29 @@
       <option name="presentableId" value="Default" />
       <updated>1641301704456</updated>
     </task>
+    <task id="LOCAL-00001" summary="Implement insertin freight">
+      <created>1641338247699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641338247699</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement insertin freight" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement insertin freight" />
   </component>
 </project>

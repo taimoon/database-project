@@ -1,18 +1,21 @@
 from mysql.connector import (connection)
 import datetime
 import random
+
+
 def getInFreight(cursor):
-    query = ("SELECT listID, freightID FROM list "
-             "WHERE freightDirection = TRUE;")
+    query = ("SELECT *  FROM freight;")
     resList = []
     cursor.execute(query)
     for i in cursor:
         resList.append(i)
     return resList
+
 def isFreightHere(cursor, freightID):
     query = (f"select freightID from list where freightID = '{freightID}';")
     i = cursor.execute(query)
     return i == None
+
 def insertInList(cursor, instance):
     xLim = 10
     yLim = 10
@@ -29,7 +32,6 @@ def insertInList(cursor, instance):
     data = (instance['listID'], instance['freightID'], random.choice('ABCD'),
             random.randint(0,xLim),random.randint(0,yLim), random.randint(0,stackMax))
     cursor.execute(addFreightQuery, data)
-
 
 def deleteFreight(cursor, freightID):
     dropFreight = (f"DELETE FROM list WHERE freightID='{freightID}';")
