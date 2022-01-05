@@ -1,7 +1,5 @@
 from mysql.connector import (connection)
-import datetime
-import random
-
+from portDataRandomGenerator import *
 
 def getInFreight(cursor):
     query = ("SELECT *  FROM freight;")
@@ -48,10 +46,7 @@ instance = {
     'origin':"Lunarian"
     }
 
-#deleteFreight(cursor, "CMSU7773080")
-insertInList(cursor, instance)
-print(getInFreight(cursor))
-
+print(randomList(1, "GSK", 100))
 
 #cnx.commit()
 cnx.close()
