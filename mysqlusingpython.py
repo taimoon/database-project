@@ -47,7 +47,7 @@ instance = {
     'origin':"Lunarian"
     }
 
-print(randomList(1, "GSK", 10))
+print(randomList(1, "GSK", 100))
 
 #cnx.commit()
 cnx.close()

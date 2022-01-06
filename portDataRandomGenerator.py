@@ -35,7 +35,7 @@ def getAllFreightType():
 def getAllTargetInfo():
     cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database=dbName)
     cursor = cnx.cursor(buffered=True)
-    cursor.execute("SELECT agentID FROM agent")
+    cursor.execute("SELECT targetID FROM targetinfo")
     targetList = []
     for i in cursor:
         targetList.append(i[0])
@@ -85,7 +85,7 @@ targetList = getAllTargetInfo()
 def randomList(listID, ownerCode, size):
     f = open("port DB freight.sql", 'w')
     query = "INSERT INTO list(freightID, listID, freightTypeID, targetID, freightDirection, origin) VALUES \n"
-    dataQuery= lambda : (f"(\"{randomFreightID(ownerCode)}\",{listID}, {random.choice(freightTypeList)}, \"{random.choice(targetList)}\", "
+    dataQuery= lambda : (f"(\"{randomFreightID(ownerCode)}\",{listID}, \"{random.choice(freightTypeList)}\", \"{random.choice(targetList)}\", "
                  f"{random.choice(['TRUE', 'FALSE'])}, \"{random.choice(originList)}\")")
     for i in range(0, size):
         query += dataQuery()+",\n"
