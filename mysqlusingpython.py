@@ -35,7 +35,8 @@ def deleteFreight(cursor, freightID):
     dropFreight = (f"DELETE FROM list WHERE freightID='{freightID}';")
     cursor.execute(dropFreight)
 
-cnx = connection.MySQLConnection(user='root', password='20019', host='127.0.0.1', database='portmanagementdb')
+sqlPass = input("key in the sql server password: ")
+cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
 cursor = cnx.cursor(buffered=True)
 instance = {
     'listID': "1",
@@ -46,7 +47,7 @@ instance = {
     'origin':"Lunarian"
     }
 
-print(randomList(1, "GSK", 100))
+print(randomList(1, "GSK", 10))
 
 #cnx.commit()
 cnx.close()
