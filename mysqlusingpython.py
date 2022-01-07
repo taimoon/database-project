@@ -16,32 +16,46 @@ def getInFreight(cursor):
 def isFreightHere(cursor, freightID):
     query = (f"select freightID from list where freightID = \'{freightID}\';")
     cursor.execute(query)
-    i = cursor
-    return i != None
+    res = []
+    for i in cursor:
+        res.append(i)
+    return res != []
 def insertList(cursor, instance):
     addList = ("INSERT INTO list(listID, freightID, freightTypeID, targetID, freightDirection, origin) "
                        "VALUES (%(listID)s, %(freightID)s, %(freightTypeID)s,"
                        "%(targetID)s, %(freightDirection)s, %(origin)s);"
                        )
     cursor.execute(addList, instance)
-def insertInList(cursor, instance):
+def insertInList(instance):
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     xLim = 10
     yLim = 10
     stackMax = 10
     if instance['freightDirection'] == False or isFreightHere(cursor, instance['freightID']) == True:
         return False
+
     insertList(cursor, instance)
     addFreightQuery = ("INSERT INTO freight(inListID, freightID, arrivalTime, areaID,locX, locY, stackLvl) "
                        "VALUES (%s, %s, now(), %s,%s, %s, %s);")
     data = (instance['listID'], instance['freightID'], random.choice('ABCD'),
             random.randint(0,xLim),random.randint(0,yLim), random.randint(0,stackMax))
     cursor.execute(addFreightQuery, data)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
     return True
-def deleteFreight(cursor, freightID):
+def deleteFreight(freightID):
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     dropFreight = (f"DELETE FROM freight WHERE freightID=\"{freightID}\";")
     cursor.execute(dropFreight)
     cnx.commit()
-def insertOutList(cursor, instance):
+    cursor.close()
+    cnx.close()
+def insertOutList(instance):
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     if instance['freightDirection'] == True or isFreightHere(cursor, instance['freightID']) == False:
         return False
     insertList(cursor, instance)
@@ -55,7 +69,11 @@ def insertOutList(cursor, instance):
     addHistoricalFreight = ("INSERT INTO historicalFreight(freightID, departureTime, arrivalTime,inListID, outListID) "
                        "VALUES (%(freightID)s, now(), %(arrivalTime)s,%(inListID)s, %(outListID)s);")
     cursor.execute(addHistoricalFreight, data)
-    deleteFreight(cursor, instance['freightID'])
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    deleteFreight(instance['freightID'])
+
 
 originList = ["United States", "China", "Indonesian", "Philippines", "United Kingdom", "Europe", "Japan",
               "South Africa", "Yemen", "Canada", "German", "France", "Brazil", "South Korean",
@@ -82,9 +100,9 @@ def randomInListInsertion(listID, ownerCode, size):
                               origin=(random.choice(originList)))
 
     for i in range(0, size):
-        insertInList(cursor,  generatorIn())
+        insertInList(generatorIn())
     f.close()
-def randomOutListInsertion(listID, ownerCode, size):
+def randomOutListInsertion(listID, size):
     query = "INSERT INTO list(freightID, listID, freightTypeID, targetID, freightDirection, origin) VALUES \n"
     cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database=dbName)
     cursor = cnx.cursor(buffered=True)
@@ -94,14 +112,16 @@ def randomOutListInsertion(listID, ownerCode, size):
                               freightDirection=False,
                               origin=(random.choice(originList)))
     for i in range(0, size):
-        insertOutList(cursor, generatorOut())
+        insertOutList(generatorOut())
 
 '''sqlPass = input("key in the sql server password: ")'''
 
-print(getInFreight(cursor))
+print(len(getInFreight(cursor)))
 randomRequest(cursor, 10, 'INOUT')
-for i in range(0,10):
-    randomInListInsertion(random.choice(getAllListID()), random.choice(agentList), 3)
-print(getInFreight(cursor))
+for i in range(0,1):
+    #randomInListInsertion(random.choice(getAllListID()), random.choice(agentList), 10)
+    randomOutListInsertion(random.choice(getAllListID()), 3)
+
+print(len(getInFreight(cursor)))
 #cnx.commit()
 cnx.close()
