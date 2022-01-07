@@ -72,5 +72,3 @@ CREATE TABLE targetInfo(
 	vehicleTypeID	INT,
 	FOREIGN KEY(vehicleTypeID) REFERENCES vehicleInfo(vehicleTypeID)
 );
-
-source C:\Users\Leong Teng Man\Desktop\portDB Demo.sql

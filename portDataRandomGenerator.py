@@ -1,7 +1,17 @@
 import random
 from mysql.connector import (connection)
-dbName = "portmanagementdb"
 sqlPass = "20019"
+dbName = "portmanagementdb"
+def getAllListID():
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database=dbName)
+    cursor = cnx.cursor(buffered=True)
+    cursor.execute("SELECT listID from request")
+    allListID = []
+    for i in cursor:
+        allListID.append(i[0])
+    cursor.close()
+    cnx.close()
+    return allListID
 def getAllCountry():
     cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='sakila')
     cursor = cnx.cursor(buffered=True)
@@ -76,19 +86,3 @@ def randomFreightID(ownerCode):
     freightID += str(getCheckDigit(freightID+"0"))
     return freightID
 
-originList = ["United States", "China", "Indonesian", "Philippines", "United Kingdom", "Europe", "Japan",
-              "South Africa", "Yemen", "Canada", "German", "France", "Brazil", "South Korean",
-              "Malaysia", "Thailand"]
-freightTypeList = getAllFreightType()
-targetList = getAllTargetInfo()
-
-def randomList(listID, ownerCode, size):
-    f = open("port DB freight.sql", 'w')
-    query = "INSERT INTO list(freightID, listID, freightTypeID, targetID, freightDirection, origin) VALUES \n"
-    dataQuery= lambda : (f"(\"{randomFreightID(ownerCode)}\",{listID}, \"{random.choice(freightTypeList)}\", \"{random.choice(targetList)}\", "
-                 f"{random.choice(['TRUE', 'FALSE'])}, \"{random.choice(originList)}\")")
-    for i in range(0, size):
-        query += dataQuery()+",\n"
-    query += dataQuery()+";"
-    f.write(query)
-    return query
