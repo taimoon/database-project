@@ -5,8 +5,8 @@ is better
 USE portManagementDB;
 INSERT INTO agent(agentID, agentName, agentEmail, specialisation)
 	VALUES
-	("GSK", "Gensokyo The Speedy", "gensokyo@gmail.com", "Fantasy Logistic"),
-	("CMS", "Commonwealth Men Space", "spaceX@email.com", "Interstellar Logistic"),
+	("GSK", "Gensokyo The Speedy", "gensokyo@gmail.com", "Fantasy Travel Logistic"),
+	("CMS", "Commonwealth of Man", "commonwealthOfMan@stellaris.milkyway.earth", "FTL Instellar Logistic"),
     ("AIS", "Albanian Int Shipping Agency", "arbagent@arbaship.com", "Shipping Agency"),
     ("MAC", "Mory And Cie", "support@ruzave.com", "Freight Forwading"),
     ("PAB", "Promar Agencies Belgium", "ghent@promar-agencies.be", "Ship Spares Handling"),
@@ -15,7 +15,8 @@ INSERT INTO agent(agentID, agentName, agentEmail, specialisation)
     ("CSB", "China Shipping Beijing", "info@ewtl.com", "Cargo Insurance");
 INSERT INTO vehicleInfo(vehicleName, vehicleMaxFreightCounts, vehicleCap, vehicleDescription)
 	VALUES
-    ("Glorious Carrier", 8, 50000, "Refrigerated trailer.Carry frozen foods & pharmaceuticals"),
+    ("Glorious Ark Ship", 1000, 50000, "Cutting edge technology made space ship with FTL technology. Able to carry vital goods"),
+	("Magic Broom", 10, 10000, "the fruit of hardship of an oridnary human"),
     ("Escalade Chevy", 7, 45000, "Specialty trailer. Carry various of liquid"),
 	("Chevrolet Roro", 12, 50000, "Specialty trailer. Carry various of liquid"),
     ("Volvo Appen", 10, 45000, "Fantainer trailer. Mechanically ventillation system"),
@@ -35,7 +36,7 @@ INSERT INTO targetInfo(targetID, PICName, agentID, vehicleID, vehicleTypeID)
 	(1136, "Saka Smith Rowe", "CSB",  "SOK889077", 2);
 INSERT INTO freightType(freightTypeID, freightTypeName, freightHeight, freightLength, tareWeight, maxGrossWeight, maxNetWeight)
 	VALUES
-	("20G0", "general purpose container", 2438, 3048, 2080, 30500, 28300),
+	("20G0", "General Purpose Container", 2438, 3048, 2080, 30500, 28300),
     ("22G1", "General Purpose Container", 2086, 3007, 2250, 30480, 28300),
     ("20H0", "Insulated Container", 2591, 3048, 2275, 32311, 29635),
     ("20P1", "Flat (Fixed Ends)", 2438, 3048, 3172, 31788, 28341),

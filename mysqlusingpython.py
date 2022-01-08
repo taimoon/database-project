@@ -1,17 +1,31 @@
 from mysql.connector import (connection)
-sqlPass="20019"
-cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
-cursor = cnx.cursor(buffered=True)
 from portDataRandomGenerator import *
 
-
-
-def getInFreight(cursor):
+def cursorToList(cursor):
+    res = []
+    for i in cursor:
+        res.append(i[0])
+    return res
+def getRequest():
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
+    cursor.execute("SELECT * FROM request")
+    res = []
+    for i in cursor:
+        res.append(i[0])
+    cursor.close()
+    cnx.close()
+    return res
+def getInFreight():
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     query = ("SELECT freightID FROM freight;")
     resList = []
     cursor.execute(query)
     for i in cursor:
         resList.append(i[0])
+    cursor.close()
+    cnx.close()
     return resList
 def isFreightHere(cursor, freightID):
     query = (f"select freightID from list where freightID = \'{freightID}\';")
@@ -59,15 +73,11 @@ def insertOutList(instance):
     if instance['freightDirection'] == True or isFreightHere(cursor, instance['freightID']) == False:
         return False
     insertList(cursor, instance)
-    query = (f"SELECT arrivalTime, inListID FROM freight WHERE freightID=\"{instance['freightID']}\"")
-    cursor.execute(query)
-    temp = []
-    for i in cursor:
-        temp.append(i[0])
-        temp.append(i[1])
-    data = dict(freightID=instance['freightID'], arrivalTime=temp[0],inListID=temp[1], outListID=instance['listID'])
-    addHistoricalFreight = ("INSERT INTO historicalFreight(freightID, departureTime, arrivalTime,inListID, outListID) "
-                       "VALUES (%(freightID)s, now(), %(arrivalTime)s,%(inListID)s, %(outListID)s);")
+    queryArrTime = (f"SELECT arrivalTime FROM freight WHERE freightID=\"{instance['freightID']}\"")
+    queryInListID = (f"SELECT inListID FROM freight WHERE freightID=\"{instance['freightID']}\"")
+    data = dict(freightID=instance['freightID'], outListID=instance['listID'])
+    addHistoricalFreight = (f"INSERT INTO historicalFreight(freightID, departureTime, arrivalTime,inListID, outListID) "
+                       f"VALUES (%(freightID)s, now(), ({queryArrTime}),({queryInListID}), %(outListID)s);")
     cursor.execute(addHistoricalFreight, data)
     cnx.commit()
     cursor.close()
@@ -82,7 +92,9 @@ agentList = getAllAgent()
 freightTypeList = getAllFreightType()
 targetList = getAllTargetInfo()
 directionDomain = ['IN', 'OUT', 'INOUT']
-def randomRequest(cursor, size, direction):
+def randomRequest(direction, size = 1):
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     addRequestQuery = ("INSERT INTO request(agentID, documentID, approval, direction) "
                        f"VALUES (%(agentID)s, %(documentID)s, TRUE, \"{direction}\");")
     generator = lambda : dict(agentID=random.choice(agentList),
@@ -90,8 +102,16 @@ def randomRequest(cursor, size, direction):
                               )
     for i in range(0, size):
         cursor.execute(addRequestQuery, generator())
-def randomInListInsertion(listID, ownerCode, size):
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+def randomInListInsertion(listID, size):
+    cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database='portmanagementdb')
+    cursor = cnx.cursor(buffered=True)
     f = open("port DB freight.sql", 'w')
+    cursor.execute(f"SELECT agentID FROM request WHERE listID={listID};")
+    ownerCode = cursorToList(cursor)
+    ownerCode = ownerCode[0]
     query = "INSERT INTO list(freightID, listID, freightTypeID, targetID, freightDirection, origin) VALUES \n"
     generatorIn = lambda : dict(listID=listID, freightID=randomFreightID(ownerCode),
                               freightTypeID=random.choice(freightTypeList),
@@ -106,7 +126,7 @@ def randomOutListInsertion(listID, size):
     query = "INSERT INTO list(freightID, listID, freightTypeID, targetID, freightDirection, origin) VALUES \n"
     cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database=dbName)
     cursor = cnx.cursor(buffered=True)
-    generatorOut = lambda : dict(listID=listID, freightID=random.choice(getInFreight(cursor)),
+    generatorOut = lambda : dict(listID=listID, freightID=random.choice(getInFreight()),
                               freightTypeID=random.choice(freightTypeList),
                               targetID=random.choice(targetList),
                               freightDirection=False,
@@ -114,14 +134,7 @@ def randomOutListInsertion(listID, size):
     for i in range(0, size):
         insertOutList(generatorOut())
 
-'''sqlPass = input("key in the sql server password: ")'''
-
-print(len(getInFreight(cursor)))
-randomRequest(cursor, 10, 'INOUT')
-for i in range(0,1):
-    #randomInListInsertion(random.choice(getAllListID()), random.choice(agentList), 10)
-    randomOutListInsertion(random.choice(getAllListID()), 3)
-
-print(len(getInFreight(cursor)))
-#cnx.commit()
-cnx.close()
+randomRequest("IN")
+randomInListInsertion(3, 10)
+randomRequest("OUT")
+randomOutListInsertion(4, 10)

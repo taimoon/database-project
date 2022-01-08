@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd9abd66-27af-4bb4-81ea-f0cdb4a9a3b1" name="Changes" comment="Insert new data from members">
+      <change afterPath="$PROJECT_DIR$/portDB DDL.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portDB Data Entry.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysqlusingpython.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysqlusingpython.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portDB Demo.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portDB.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portDataRandomGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/portDataRandomGenerator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,15 +30,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="23EaT3hP8YE1vGpHmGlDXGcK2ZF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunManager" selected="Python.mysqlusingpython">
     <configuration name="mysqlusingpython" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -50,7 +59,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysqlusingpython.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -77,6 +86,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.mysqlusingpython" />
+      <item itemvalue="Python.portDataRandomGenerator" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.mysqlusingpython" />
@@ -85,6 +98,10 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Leong Teng Man\AppData\Roaming\Subversion</configuration>
+    <option name="runUnderTerminal" value="true" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fd9abd66-27af-4bb4-81ea-f0cdb4a9a3b1" name="Changes" comment="" />
@@ -151,6 +168,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Implement insertin freight" />
     <MESSAGE value="Improving Random Generator" />
     <MESSAGE value="Insert new data from members" />
