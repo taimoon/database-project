@@ -134,7 +134,13 @@ def randomOutListInsertion(listID, size):
     for i in range(0, size):
         insertOutList(generatorOut())
 
-randomRequest("IN")
-randomInListInsertion(3, 10)
-randomRequest("OUT")
-randomOutListInsertion(4, 10)
+lastestID = getAllListID()
+lastestID = lastestID[-1]
+randomRequest("IN", size=3)
+for i in range(0,3):
+    lastestID += 1
+    randomInListInsertion(3, 10)
+randomRequest("OUT", size=3)
+for i in range(0,3):
+    lastestID += 1
+    randomOutListInsertion(4, 10)
