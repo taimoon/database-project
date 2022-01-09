@@ -7,7 +7,7 @@ Run the sql files in order to set up the database.
 5. extraList
 6. extra inlist insertion
 7. extra outlist insertion
-Note that you can put them into a starter sql file using source path\filename \
+Note that you can put them into a starter sql file using source path\filename \\
 
 The mysqlusingpython was to simulate the database under operation by generating random requests.
 It could be easily extend into a software. \
