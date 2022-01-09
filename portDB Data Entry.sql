@@ -63,3 +63,8 @@ INSERT INTO freight(inListID, freightID, arrivalTime, areaID,locX, locY, stackLv
 	(1, "GSKU3053054", now(), 'A', 0,1,2),
 	(1, "CMSU7773080", now(), 'A', 0,1,3),
 	(2, "CMSU7773078", now(), 'B', 0,1,3);
+INSERT INTO historicalFreight(freightID, departureTime, arrivalTime,inListID, outListID) 
+	VALUES ("CMSU7773080", now(), 
+	(SELECT arrivalTime FROM freight WHERE freightID="CMSU7773080"),
+	(SELECT inListID FROM freight WHERE freightID="CMSU7773080"), "2");
+DELETE FROM freight WHERE freightID = "CMSU7773078";

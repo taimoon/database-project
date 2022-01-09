@@ -1,7 +1,7 @@
 import random
 from mysql.connector import (connection)
 import getpass
-sqlPass=getpass.getpass("Enter passowrd: ")
+sqlPass=getpass.getpass("Enter password: ")
 dbName = "portmanagementdb"
 def getAllListID():
     cnx = connection.MySQLConnection(user='root', password=sqlPass, host='127.0.0.1', database=dbName)
