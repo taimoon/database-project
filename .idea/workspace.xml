@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd9abd66-27af-4bb4-81ea-f0cdb4a9a3b1" name="Changes" comment="Update">
+      <change afterPath="$PROJECT_DIR$/deleteQuery.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extra inlist insertion.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extra outlist insertion.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extraList.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requestList.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insert inlist request.sql" beforeDir="false" afterPath="$PROJECT_DIR$/insert inlist request.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insert outlist request.sql" beforeDir="false" afterPath="$PROJECT_DIR$/insert outlist request.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysqlusingpython.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysqlusingpython.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/port DB freight.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portDB Data Entry.sql" beforeDir="false" afterPath="$PROJECT_DIR$/portDB Data Entry.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portDataRandomGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/portDataRandomGenerator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
