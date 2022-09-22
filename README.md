@@ -12,6 +12,35 @@ In brief,
 - To monitor the flow of traffic within the port basin.
 - To stored information regarding port agents, types of cargo, and vehicles.
 
+## How to set up the Port Freight Management database with MySQL  
+
+Run the sql files in order to set up the database.
+1. portDB DDL
+2. portDB Data Entry
+3. insert inlist request
+4. insert outlist request
+5. extraList
+6. extra inlist insertion
+7. extra outlist insertion 
+
+#### IMPORTANT- Note that you can put them into a starter sql file using ``source path\filename ``
+
+[CLick here to visit starter sql file](https://github.com/soonkienyuan/database-project-1/blob/main/starter.sql)
+
+## Generate Random Data in MySQL with python 
+
+- The **mysqlusingpython** was to simulate the database under operation by generating random requests.
+
+- It could be easily extend into a software.
+
+- Make sure that you install mysql python connector before running.
+
+- Run mysqlusingpython, and key in your database password, press enter if you wish to run something.
+
+[Click here for code](https://github.com/soonkienyuan/database-project-1/tree/main/Generate%20random%20data%20with%20python)
+
+
+
 ## Conceptual Database Design
 
 ### Bussiness Rule
@@ -173,18 +202,4 @@ refer to the [click here for Normalization](https://github.com/soonkienyuan/data
 
 
 
-Run the sql files in order to set up the database.
-1. portDB DDL
-2. portDB Data Entry
-3. insert inlist request
-4. insert outlist request
-5. extraList
-6. extra inlist insertion
-7. extra outlist insertion \
-Note that you can put them into a starter sql file using source path\filename 
 
-The mysqlusingpython was to simulate the database under operation by generating random requests.
-It could be easily extend into a software. \
-Make sure that you install mysql python connector before running.
-Run mysqlusingpython, and key in your database password, press enter
-if you wish to run something.
