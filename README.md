@@ -1,4 +1,4 @@
-# database project
+# Port Freight Management System with MySQL
 Run the sql files in order to set up the database.
 1. portDB DDL
 2. portDB Data Entry
