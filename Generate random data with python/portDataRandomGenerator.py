@@ -61,6 +61,7 @@ for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
     starting = starting + 1
     if starting%11 == 0:
         starting = starting + 1
+
 def getCheckDigit(ID):
     sum = 0
     digitIdx = 0
